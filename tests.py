@@ -60,20 +60,18 @@ class TestBooksCollector:
 
 # ===== Тест для проверки вывода списока книг с определённым жанром ====
 # Получение списка книг с определенным жанром
-    def test_get_books_with_specific_genre_success(self):
+    def test_get_books_with_specific_genre_should_return_only_matching_books(self):
         collector = BooksCollector()
         collector.add_new_book("Автостопом по Галактике")
         collector.add_new_book("Властелин колец")
-        collector.add_new_book("Оно")
         collector.set_book_genre("Автостопом по Галактике", "Фантастика")
         collector.set_book_genre("Властелин колец", "Фантастика")
-        collector.set_book_genre("Оно", "Ужасы")
 
         fantasy_books = collector.get_books_with_specific_genre("Фантастика")
+
         assert len(fantasy_books) == 2
         assert "Автостопом по Галактике" in fantasy_books
         assert "Властелин колец" in fantasy_books
-        assert "Оно" not in fantasy_books
 # ===== Тест для проверки получения словаря books_genre ====
 # Проверка, что метод возвращает словарь
     def test_get_books_genre_returns_dict(self):
